@@ -5,9 +5,16 @@ import cherrypy
 
 class Config():
 
-    def load(self):
+    _config = {}
+
+    @staticmethod
+    def load():
         f = open('src/config.json', "r")
-        config = json.load(f)
+        Config._config = json.load(f)
         f.close()
 
-        cherrypy.config.update(config)
+        cherrypy.config.update(Config._config)
+
+    @staticmethod
+    def get(prop):
+        return Config._config[prop]
