@@ -1,17 +1,16 @@
-import json
 import cherrypy
 
-from controllers.main import MainController
+from controllers.root import RootController
+from lib.config import Config
 
-f = open('config.json', "r")
-config = json.load(f)
-f.close()
-
-cherrypy.config.update(config)
 
 if __name__ == '__main__':
-    cherrypy.tree.mount(MainController(), '/api/hello', {
+
+    Config().load()
+
+    cherrypy.tree.mount(RootController(), '/api/hello', {
         '/': {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
     })
+
     cherrypy.engine.start()
     cherrypy.engine.block()

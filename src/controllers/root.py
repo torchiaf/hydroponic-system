@@ -2,7 +2,7 @@ import cherrypy
 
 
 @cherrypy.expose
-class MainController(object):
+class RootController(object):
 
     @cherrypy.tools.accept(media='text/plain')
     def GET(self):
