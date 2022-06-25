@@ -1,6 +1,9 @@
 import json
+import sys
 
 import cherrypy
+
+from lib.constants import DEFAULT_CONFIG_PATH
 
 
 class Config():
@@ -9,7 +12,9 @@ class Config():
 
     @staticmethod
     def load():
-        f = open('src/config.json', "r")
+        dir = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_CONFIG_PATH
+
+        f = open(dir, "r")
         Config._config = json.load(f)
         f.close()
 
