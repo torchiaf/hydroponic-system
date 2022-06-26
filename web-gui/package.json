@@ -1,5 +1,5 @@
 {
-  "name": "Hydroponic System Web Gui",
+  "name": "hydroponic-system-web-gui",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
