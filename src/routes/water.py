@@ -2,11 +2,11 @@ import cherrypy
 
 
 @cherrypy.expose
-class CourseRouter(object):
+class WaterRouter(object):
 
     @cherrypy.tools.accept(media='text/plain')
     def GET(self):
-        return 'Courses GET'
+        return 'GET Water'
 
     def POST(self):
-        return 'Courses POST'
+        return 'POST Water'
