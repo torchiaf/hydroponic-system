@@ -1,12 +1,13 @@
 import cherrypy
 
+from lib.api.response import Response
 
 @cherrypy.expose
 class WaterRouter(object):
 
     @cherrypy.tools.accept(media='text/plain')
     def GET(self):
-        return 'GET Water'
+        return Response.msg({'water': '5', 'unit': 'ml'})
 
     def POST(self):
-        return 'POST Water'
+        return Response.msg({'water': '10', 'unit': 'ml'})

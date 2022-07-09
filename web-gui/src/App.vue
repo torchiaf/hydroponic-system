@@ -1,4 +1,38 @@
-<script setup lang="ts">
+<script>
+
+  export default {
+    data() {
+      return {
+
+        /** TODO machines will be populated with cluster elements id*/
+        machines: [1,2,3],
+
+        machine: null,
+        machine_data: {},
+        onMachineSelected: () => {
+
+          console.log('Selected: ', this.machine);
+          
+          /**
+           *  TODO change address based on selected machine value
+           * ie.: http://machine.1:8082/v1/water
+           */
+          fetch("http://localhost:8082/v1/water")
+            .then(response => response.json())
+            .then(data => {
+              console.log(data)
+              this.machine_data.water = data.response.water
+            });
+
+        }
+      }
+    },
+
+    mounted() {
+    }
+
+  }
+
 </script>
 
 <template>
@@ -11,6 +45,17 @@
   </header>
 
   <main>
+
+    <div>Machine Number</div>
+
+    <select v-model="machine" @change="onMachineSelected()">
+      <option disabled value="">Please select one</option>
+      <option v-for="machine_id in machines" :value="machine_id">
+        {{ machine_id }}
+      </option>
+    </select>
+
+    <div class="machine" v-if=machine_data.water>Water: {{ machine_data.water }}</div>
 
   </main>
 </template>
@@ -39,6 +84,10 @@ header {
 .logo {
   display: block;
   margin: 0 auto 2rem;
+}
+
+.machine {
+  margin-top: 20px;
 }
 
 a,

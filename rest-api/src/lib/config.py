@@ -5,7 +5,6 @@ import cherrypy
 
 from lib.constants import DEFAULT_CONFIG_PATH
 
-
 class Config():
 
     _config = {}

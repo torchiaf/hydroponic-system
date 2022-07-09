@@ -1,4 +1,5 @@
 import cherrypy
+import cherrypy_cors
 
 from lib.config import Config
 from routes.position import PositionRouter
@@ -8,6 +9,9 @@ from routes.water import WaterRouter
 
 
 if __name__ == '__main__':
+
+    # TODO refactoring
+    cherrypy_cors.install()
 
     Config.load()
 
